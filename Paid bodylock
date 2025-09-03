@@ -26,16 +26,4 @@ if not allowed then
     return
 end
 
-local function d(s)local r=""for i=1,#s do r=r..string.char(s:byte(i))end return r end
-local P=game:GetService(d("Players"))
-local R=game:GetService(d("RunService"))
-local U=game:GetService(d("UserInputService"))
-local p=P.LocalPlayer
-local c=p.Character or p.CharacterAdded:Wait()
-local h=c:WaitForChild(d("HumanoidRootPart"))
-local l=false
-U.InputBegan:Connect(function(i,g)if not g and i.KeyCode==TOGGLE_KEY then l=not l end end)
-p.CharacterAdded:Connect(function(ch)c=ch h=ch:WaitForChild(d("HumanoidRootPart"))end)
-local function f()local cl=nil local bd=RANGE for _,pl in pairs(P:GetPlayers())do if pl~=p and pl.Character then local hu=pl.Character:FindFirstChild(d("Humanoid")) local hd=pl.Character:FindFirstChild(d("Head")) if hu and hd and hu.Health>0 then local dist=(hd.Position-h.Position).Magnitude if dist<bd then bd=dist cl=hd end end end end return cl end
-local function a(tp)local pos=h.Position local tf=Vector3.new(tp.X,pos.Y,tp.Z)local dir=(tf-pos).Unit local lp=h.CFrame:PointToObjectSpace(tp)local yo=0 if lp.X>0 then yo=-MAX_YAW elseif lp.X<0 then yo=MAX_YAW end h.CFrame=CFrame.new(pos,pos+dir)*CFrame.Angles(0,yo,0)end
-R.RenderStepped:Connect(function()if not l or not c or not h then return end local tg=f()if tg then a(tg.Position)end end)
+local function d(s)local r=""for i=1,#s do r=r..string.char(s:byte(i))end return r end;local P=game:GetService(d("Players"));local R=game:GetService(d("RunService"));local U=game:GetService(d("UserInputService"));local p=P.LocalPlayer;local c=p.Character or p.CharacterAdded:Wait();local h=c:WaitForChild(d("HumanoidRootPart"));local l=false;U.InputBegan:Connect(function(i,g)if not g and i.KeyCode==_G.TOGGLE_KEY then l=not l end end);p.CharacterAdded:Connect(function(ch)c=ch h=ch:WaitForChild(d("HumanoidRootPart"))end);local function f()local cl=nil local bd=_G.RANGE for _,pl in pairs(P:GetPlayers())do if pl~=p and pl.Character then local hu=pl.Character:FindFirstChild(d("Humanoid")) local hd=pl.Character:FindFirstChild(d("Head")) if hu and hd and hu.Health>0 then local dist=(hd.Position-h.Position).Magnitude if dist<bd then bd=dist cl=hd end end end end return cl end;local function a(tp)local pos=h.Position local tf=Vector3.new(tp.X,pos.Y,tp.Z) local dir=(tf-pos).Unit local lp=h.CFrame:PointToObjectSpace(tp) local yo=0 if lp.X>0 then yo=-_G.MAX_YAW elseif lp.X<0 then yo=_G.MAX_YAW end h.CFrame=CFrame.new(pos,pos+dir)*CFrame.Angles(0,yo,0)end;R.RenderStepped:Connect(function()if not l or not c or not h then return end local tg=f()if tg then a(tg.Position)end end)
